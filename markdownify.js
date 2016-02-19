@@ -6,6 +6,7 @@
         '.markdown'
     ];
 
+    var matter = require('gray-matter');
     var through = require('through');
     var marked = require('marked');
     var path = require('path');
@@ -34,16 +35,16 @@
         }
 
         function end() {
-            /* Convert the data to markdown: */
-            var self = this;
-            data = marked(data, function callback(err, result) {
+            var result = matter(data)
+            marked(result.content, function callback(err, html) {
                 if (err) {
                     throw err;
                 }
+                result.content = html
 
-                self.queue(stringify(result));
-                self.queue(null);
-            });
+                this.queue(stringify(result));
+                this.queue(null);
+            }.bind(this));
         }
 
         return through(write, end);

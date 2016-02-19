@@ -4,7 +4,7 @@
   "description": "Browserify transform for markdown documents.",
   "main": "markdownify.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests.js"
   },
   "repository": {
     "type": "git",
@@ -21,9 +21,15 @@
   },
   "homepage": "https://github.com/bitjutsu/markdownify",
   "dependencies": {
+    "gray-matter": "^2.0.2",
     "marked": "^0.3.2",
     "path": "^0.4.9",
     "pygmentize-bundled": "^2.1.1",
     "through": "^2.3.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "mockery": "^1.4.0"
   }
 }
